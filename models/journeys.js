@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 var journeySchema = mongoose.Schema({
   departure: String,
@@ -9,3 +9,5 @@ var journeySchema = mongoose.Schema({
 });
 
 var journeyModel = mongoose.model('journeys', journeySchema);
+
+module.exports = journeyModel;
