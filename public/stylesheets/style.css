@@ -3,13 +3,6 @@ body {
   font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-#content-wrapper {
-  overflow-x: hidden;
-  width: 100%;
-  padding-top: 5rem;
-  padding-bottom: 80px;
-}
-
 a {
   color: #00B7FF;
 }
@@ -38,4 +31,12 @@ body {
   justify-content: center;
 }
 
-
+.sticky-footer {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  right: 4%;
+  bottom: 0;
+  width: calc(100% - 90px);
+  height: 30px;
+}

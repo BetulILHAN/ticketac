@@ -93,7 +93,12 @@ router.get('/result', function(req, res, next) {
   }
 
 
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'No train available' });
+});
+
+/* Page unvailable */
+router.get('/unvailable', function(req, res, next) {
+  res.render('unvailable', { title: 'Ticketac' });
 });
 
 module.exports = router;
