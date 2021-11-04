@@ -1,6 +1,6 @@
 body {
   /* padding: 100px; */
-  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -12,7 +12,6 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  
   
   color: #FFFFFF;
   
@@ -31,13 +30,6 @@ body {
   justify-content: center;
 }
 
-#travels {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top:-10%;
-}
-
 .homepage{
   display: flex;
   flex-direction: column;
@@ -50,6 +42,25 @@ body {
   width : 20vw;
   margin-top : 40px;
   
+}
+
+#unvailable {
+  display: flex;
+  justify-content: center;
+  margin-top: -15%;
+}
+
+#orders {
+  display: flex;
+  justify-content: center;
+  margin-top: -8%;
+}
+
+#travels {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:-10%;
 }
 
 .sticky-footer {
