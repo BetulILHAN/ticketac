@@ -6,13 +6,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
    <!-- Bootstrap core CSS-->
-   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
    <!--CSS--> 
-   <link href="stylesheet/style.css" rel="stylesheet">
+   <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 <body>
-  <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+  <div class="container-fluid justify-content-center">
+
+    <div class="row">
+
+
+      <!-- SIGN IN AREA -->
+      <div class="col-12 col-sm-3 text-center ">
+
+        <div class="formArea">
+
+          <h4 class="titleForm">Sign-in:</h4>
+
+          <form action="/sign-in" method="POST">
+            <div class="form-group">
+              <label for="exampleInputEmail1"></label>
+              <input name="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1"></label>
+              <input name="password" type="password" class="form-control" placeholder="Password">
+            </div>
+
+            <button type="submit" class="btn btn-danger">Confirm</button>
+          </form>
+
+        </div>
+
+      </div>
+
+      <!-- SIGN UP AREA -->
+      <div class="col-12 col-sm-3 text-center justify-content-center">
+
+        <div class="formArea">
+          <h4 class="titleForm">Sign-up :</h4>
+
+          <form>
+            <div class="form-group">
+              <label for="exampleInputName"></label>
+              <input type="text" class="form-control" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputFirstname"></label>
+              <input type="text" class="form-control" placeholder="Firstname">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1"></label>
+              <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1"></label>
+              <input type="password" class="form-control"  placeholder="Password">
+            </div>
+
+            <button type="submit" class="btn btn-danger">Confirm</button>
+          </form>
+        </div>
+
+      </div>
+
+      
+
+    </div>
+  </div>
 
      <!-- Bootstrap core JavaScript-->
      <script src="vendor/jquery/jquery.min.js"></script>
