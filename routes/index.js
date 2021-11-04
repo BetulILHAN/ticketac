@@ -25,22 +25,13 @@ router.get('/homepage', function(req, res, next) {
 
 /* Bouton go Page homepage */
 router.post('/go', async function(req, res, next) {
-  var searchJourney = await journeyModel.find({
-    departure: req.body.inputdeparture,
-    arrival: req.body.inputdestination,
-    date: req.body.inputdate
-  })
+  var departure = req.body.inputdeparture;
+  var arrival= req.body.inputdestination;
+  var date = new Date(req.body.inputdate);
+
+  var getJourney = await journeyModel.find({departure,arrival,date})
 console.log(searchJourney);
-  if(searchJourney == true){
-    req.session.user = {
-      departure: searchJourney.departure,
-      arrival: searchJourney.arrival,
-      date: searchJourney.date
-    }
-    res.redirect('/travels')
-  } else {
-    res.redirect('/unvailable')
-  };
+res.render('travels', { title: 'Travels available', getJourney });
 });
 
 /* Page travels */
@@ -68,7 +59,6 @@ router.post('/sign-up',async function(req, res, next) {
   if (emailalreadyexist != null) {
     req.session.err = "utilisateur déjà crée";
     res.redirect('/');
- 
 }
 
     else {
@@ -104,8 +94,9 @@ router.get('/unvailable', function(req, res, next) {
 });
 
 /* Page orders */
-router.get('/orders', function(req, res, next) {
-  res.render('orders', { title: 'My Tickets' });
+router.get('/orders', async function(req, res, next) {
+  var orderJourney =  await journeyModel.find()
+  res.render('orders', { title: 'My Tickets', orderJourney });
 });
 
 /* Page lasttravel */
