@@ -1,6 +1,6 @@
 body {
   /* padding: 100px; */
-  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -29,6 +29,18 @@ body {
   display: flex;
   /* align-items: center; */
   justify-content: center;
+}
+
+#unvailable {
+  display: flex;
+  justify-content: center;
+  margin-top: -15%;
+}
+
+#orders {
+  display: flex;
+  justify-content: center;
+  margin-top: -8%;
 }
 
 .sticky-footer {
