@@ -31,6 +31,11 @@ router.get('/orders', function(req, res, next) {
   res.render('orders', { title: 'My Tickets' });
 });
 
+/* Page lasttravel */
+router.get('/last-travel', function(req, res, next) {
+  res.render('lasttravel', { title: 'My Last Trips' });
+});
+
 
 // Remplissage de la base de donnée, une fois suffit
 router.get('/save', async function(req, res, next) {
