@@ -50,6 +50,23 @@ router.get('/travels', function(req, res, next) {
   res.render('travels', { title: 'Ticketac' });
 });
 
+router.post('/sign-in', function(req, res, next) {
+  res.redirect('/homepage');
+});
+
+router.post('/sign-up', function(req, res, next) {
+  res.redirect('/homepage');
+});
+
+router.post('/go', function(req, res, next) {
+  res.redirect('/travels');
+});
+
+router.get('/ok', function(req, res, next) {
+  res.redirect('/orders');
+});
+
+
 
 // Remplissage de la base de donnée, une fois suffit
 router.get('/save', async function(req, res, next) {
