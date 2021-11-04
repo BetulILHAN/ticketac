@@ -25,28 +25,24 @@ router.get('/homepage', function(req, res, next) {
 
 /* Bouton go Page homepage */
 router.post('/go', async function(req, res, next) {
+  
+var date = new Date(req.body.inputdate);
+var departure = req.body.inputdeparture;
+var arrival = req.body.inputdestination
+
   var searchJourney = await journeyModel.find({
-    departure: req.body.inputdeparture,
-    arrival: req.body.inputdestination,
-    date: req.body.inputdate
+    departure, arrival, date
   })
 console.log(searchJourney);
-  if(searchJourney == true){
-    req.session.user = {
-      departure: searchJourney.departure,
-      arrival: searchJourney.arrival,
-      date: searchJourney.date
-    }
-    res.redirect('/travels')
-  } else {
-    res.redirect('/unvailable')
-  };
+  
+res.render('travels', {searchJourney})
+  
 });
 
 /* Page travels */
 router.get('/travels', async function(req, res, next) {
-  var getJourney = await journeyModel.find()
-  res.render('travels', { title: 'Travels available' });
+  var searchJourney = await journeyModel.findOne( )
+  res.render('travels', { title: 'Travels available', getJourney });
 });
 
 router.post('/sign-in', async function(req, res, next) {
