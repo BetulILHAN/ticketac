@@ -42,6 +42,10 @@ router.get('/', function(req, res, next) {
   res.render('login', { title: 'Ticketac' });
 });
 
+router.get('/homepage', function(req, res, next) {
+  res.render('homepage', { title: 'Ticketac' });
+});
+
 
 // Remplissage de la base de donnée, une fois suffit
 router.get('/save', async function(req, res, next) {
