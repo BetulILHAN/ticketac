@@ -37,22 +37,24 @@
                           </tr>
                         </thead>
                         <tbody>
-                            <% for (var i=0; i<searchJourney.length; i++){%>
+                            <%var totaltrip = 0%>
+                            <% for (var i=0; i<panier.length; i++){%>
                           <tr>
-                            <th scope="row">1</th>
-                            <td><%=searchJourney[i].departure%> /<%=searchJourney[i].arrival%></td>
-                            <td><%=dateFormat(searchJourney[i].date)%></td>
-                            <td><%=searchJourney[i].departureTime%></td>
-                            <td><%=searchJourney[i].price %>€</td>
+                            <th scope="row"><%=i%></th>
+                            <td><%=panier[i].departure%> /<%=panier[i].arrival%></td>
+                            <td><%=dateFormat(panier[i].date)%></td>
+                            <td><%=panier[i].departureTime%></td>
+                            <td><%=Number(panier[i].price) %>€</td>
                           </tr>
-                          
+                          <%totaltrip = Number(panier[i].price) + totaltrip%>
                           <%}%>
                           
                           <tr class="table-danger">
                             <th scope="row">Total</th>
                             <td colspan="3"></td>
-                            <td>218€</td>
+                            <td><%=totaltrip%>€</td>
                         </tr> 
+                        
                         </tbody>
                       </table>
                       <div class="float-right">

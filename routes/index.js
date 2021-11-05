@@ -116,15 +116,22 @@ router.get('/unvailable', function(req, res, next) {
 
 /* Page orders */
 router.get('/orders', async function(req, res, next) {
- 
+  
+ console.log("pageorders", req.query);
   var date = new Date(req.query.inputdate);
   var departure = req.query.inputdeparture;
   var arrival = req.query.inputdestination;
 
   var searchJourney = await journeyModel.find({
   date,departure, arrival});
+  console.log("recherche trajet",searchJourney);
   var date = new Date(req.query.inputdate);
- searchJourney.push({
+   
+   if (req.session.panier == undefined){
+    req.session.panier =[];
+   }
+
+   req.session.panier.push({
     departure: req.query.inputdeparture,
     arrival: req.query.inputdestination,
     date,
@@ -132,7 +139,7 @@ router.get('/orders', async function(req, res, next) {
     price: req.query.inputprice
     
 })
-  res.render('orders', { title: 'My Tickets', searchJourney });
+  res.render('orders', { title: 'My Tickets', panier :req.session.panier });
 });
 
 /* Page lasttravel */
