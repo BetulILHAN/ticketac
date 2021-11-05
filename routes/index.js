@@ -37,7 +37,11 @@ var arrival = req.body.inputdestination;
     departure, arrival, date
   })
 console.log(searchJourney);
-res.render('travels', {title: 'Homepage', searchJourney})
+
+if(searchJourney.length == 0) {
+  res.redirect('/unvailable');}    
+else {
+res.render('travels', {title: 'Homepage', searchJourney})}
 });
 
 /* Page travels */
@@ -126,7 +130,6 @@ router.get('/orders', async function(req, res, next) {
   date,departure, arrival});
   console.log("recherche trajet",searchJourney);
   var date = new Date(req.query.inputdate);
-   
    if (req.session.panier == undefined){
     req.session.panier =[];
    }
