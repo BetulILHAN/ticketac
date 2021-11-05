@@ -25,19 +25,22 @@ router.get('/homepage', function(req, res, next) {
 
 /* Bouton go Page homepage */
 router.post('/go', async function(req, res, next) {
-  var departure = req.body.inputdeparture;
-  var arrival= req.body.inputdestination;
-  var date = new Date(req.body.inputdate);
+  
+var date = new Date(req.body.inputdate);
+var departure = req.body.inputdeparture;
+var arrival = req.body.inputdestination
 
-  var getJourney = await journeyModel.find({departure,arrival,date})
+  var searchJourney = await journeyModel.find({
+    departure, arrival, date
+  })
 console.log(searchJourney);
-res.render('travels', { title: 'Travels available', getJourney });
+res.render('travels', {searchJourney})
 });
 
 /* Page travels */
 router.get('/travels', async function(req, res, next) {
-  var getJourney = await journeyModel.find()
-  res.render('travels', { title: 'Travels available' });
+  var searchJourney = await journeyModel.findOne( )
+  res.render('travels', { title: 'Travels available', getJourney });
 });
 
 router.post('/sign-in', async function(req, res, next) {
