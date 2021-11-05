@@ -25,6 +25,7 @@
 
                     <div class="col-10">
                 <h4 class="offset-2">My tickets :</h4>
+               
                     <table class="table table-light table-hover table-borderless">
                         <thead>
                           <tr>
@@ -36,15 +37,20 @@
                           </tr>
                         </thead>
                         <tbody>
-                          
-                            <%for (var i=0;i<orderJourney.length;i++){%>
-                              <tr>
+                            <% for (var i=0; i<searchJourney.length; i++){%>
+                          <tr>
                             <th scope="row">1</th>
-                            <td><%=orderJourney[i].departure%> / <%=orderJourney[i].arrival%></td>
-                            <td><%=dateFormat(orderJourney[i].date)%></td>
-                            <td><%=orderJourney[i].departureTime%></td>
-                            <td><%=orderJourney[i].price%>€</td>
-                           
+                            <td><%=searchJourney[i].departure%> /<%=searchJourney[i].arrival%></td>
+                            <td><%=dateFormat(searchJourney[i].date)%></td>
+                            <td><%=searchJourney[i].departureTime%></td>
+                            <td><%=searchJourney[i].price %>€</td>
+                          </tr>
+                          <!-- <tr>
+                            <th scope="row">2</th>
+                            <td>Paris / Bordeaux</td>
+                            <td>07/12/2019</td>
+                            <td>19:00 pm</td>
+                            <td>125€</td>
                           </tr>
                           <%}%>
                           
@@ -52,7 +58,8 @@
                             <th scope="row">Total</th>
                             <td colspan="3"></td>
                             <td>218€</td>
-                        </tr>
+                        </tr> -->
+                        <%}%>
                         </tbody>
                       </table>
                       <div class="float-right">
