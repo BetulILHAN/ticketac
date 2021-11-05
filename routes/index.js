@@ -9,6 +9,9 @@ var date = ["2018-11-20","2018-11-21","2018-11-22","2018-11-23","2018-11-24"]
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  if(req.session.searchJourney == undefined){
+    req.session.searchJourney = []
+  }
   if (req.session.err) {
     res.render('login', { title: 'Ticketac', error : req.session.err })
   } else {
@@ -28,7 +31,8 @@ router.post('/go', async function(req, res, next) {
   
 var date = new Date(req.body.inputdate);
 var departure = req.body.inputdeparture;
-var arrival = req.body.inputdestination
+var arrival = req.body.inputdestination;
+
 
   var searchJourney = await journeyModel.find({
     departure, arrival, date
@@ -41,8 +45,15 @@ res.render('travels', {searchJourney})
 
 /* Page travels */
 router.get('/travels', async function(req, res, next) {
-  var searchJourney = await journeyModel.findOne( )
-  res.render('travels', { title: 'Travels available', getJourney });
+//   req.session.searchJourney.push({
+//     departure: req.query.inputdeparture,
+//      arrival: req.query.inputdestination,
+//     date: req.query.inputdate,
+//     departureTime:req.query.inputdepartureTime,
+//     price: req.query.price
+    
+// })
+  res.render('travels', { title: 'Travels available', searchJourney });
 });
 
 router.post('/sign-in', async function(req, res, next) {
@@ -80,9 +91,17 @@ router.post('/sign-up',async function(req, res, next) {
 });
 
 /* Bouton ok Page travels */
-router.get('/ok', function(req, res, next) {
-  res.redirect('/orders');
-});
+// router.get('/ok', async function(req, res, next) {
+//   var date = new Date(req.body.inputdate);
+// var departure = req.body.inputdeparture;
+// var arrival = req.body.inputdestination
+
+//   var searchJourney = await journeyModel.find({
+//     departure, arrival, date
+//   })
+// console.log(searchJourney);
+//   res.redirect('/orders', {searchJourney});
+// });
 
 /* Bouton home Page unvailable */
 router.post('/home', function(req, res, next) {
@@ -100,8 +119,23 @@ router.get('/unvailable', function(req, res, next) {
 });
 
 /* Page orders */
-router.get('/orders', function(req, res, next) {
-  res.render('orders', { title: 'My Tickets' });
+router.get('/orders', async function(req, res, next) {
+  var date = new Date(req.query.inputdate);
+var departure = req.query.inputdeparture;
+var arrival = req.query.inputdestination;
+
+  var searchJourney = await journeyModel.find({
+  date,departure, arrival});
+  var date = new Date(req.query.inputdate);
+ searchJourney.push({
+    departure: req.query.inputdeparture,
+    arrival: req.query.inputdestination,
+    date,
+    departureTime:req.query.inputdepartureTime,
+    price: req.query.inputprice
+    
+})
+  res.render('orders', { title: 'My Tickets', searchJourney });
 });
 
 /* Page lasttravel */

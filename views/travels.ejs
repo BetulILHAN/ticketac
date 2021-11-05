@@ -35,7 +35,7 @@
                           <p style="color :black; padding-right: 100px; font-size: 15px", class="card-text"> train departure at : <%=searchJourney[i].departureTime%> </p>
                           <p style="color :black; padding-right: 10px; font-weight:bold; font-size: 15px", class="card-text"> <%=searchJourney[i].price%> € </p>
                         </p>
-                          <a href="/ok" class="btn btn-danger">OK</a>
+                          <a href="/orders?inputdate=<%=searchJourney[i].date%>&inputdeparture=<%=searchJourney[i].departure%>&inputdestination=<%=searchJourney[i].arrival%>&inputdepartureTime=<%=searchJourney[i].departureTime%>&inputprice=<%=searchJourney[i].price%>" class="btn btn-danger">OK</a>
                         </div>
                     <%}%>
                     </div>
