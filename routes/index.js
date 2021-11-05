@@ -37,7 +37,11 @@ var arrival = req.body.inputdestination;
     departure, arrival, date
   })
 console.log(searchJourney);
-res.render('travels', {title: 'Homepage', searchJourney})
+
+if(searchJourney.length == 0) {
+  res.redirect('/unvailable');}    
+else {
+res.render('travels', {title: 'Homepage', searchJourney})}
 });
 
 /* Page travels */
@@ -124,15 +128,15 @@ router.get('/orders', async function(req, res, next) {
   var searchJourney = await journeyModel.find({
   date,departure, arrival});
   var date = new Date(req.query.inputdate);
- searchJourney.push({
-    departure: req.query.inputdeparture,
-    arrival: req.query.inputdestination,
-    date,
-    departureTime:req.query.inputdepartureTime,
-    price: req.query.inputprice
-    
-})
-  res.render('orders', { title: 'My Tickets', searchJourney });
+ 
+        searchJourney.push({
+          departure: req.query.inputdeparture,
+          arrival: req.query.inputdestination,
+          date,
+          departureTime:req.query.inputdepartureTime,
+          price: req.query.inputprice
+      }) 
+  res.render('orders', { title: 'My Tickets', searchJourney }); 
 });
 
 /* Page lasttravel */
