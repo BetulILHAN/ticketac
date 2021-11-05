@@ -1,13 +1,12 @@
-body {
-  /* padding: 100px; */
-  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+
 
 a {
   color: #00B7FF;
 }
 
 body {
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+
   background:  linear-gradient( 0deg, #3498db, #FFFFFF);
   background-position: center;
   background-size: cover;
@@ -22,6 +21,17 @@ body {
   flex-direction : column;
   align-items: center; 
   justify-content: center;
+}
+
+.container-fluid{
+  
+  margin-top: 20px;
+  /* padding-bottom: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction : column;
+  align-items: center; 
+  justify-content: center; */
 }
 
 .row {
@@ -53,6 +63,7 @@ body {
 #orders {
   display: flex;
   justify-content: center;
+  
   margin-top: -8%;
 }
 
@@ -61,6 +72,25 @@ body {
   align-items: center;
   justify-content: center;
   margin-top:-10%;
+}
+
+.card {
+  background-color: grey;
+}
+
+#modal_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+transition: opacity 0.3s ease;
+}
+
+#modal_container.show {
+  pointer-events: auto;
+  opacity: 1;
 }
 
 .sticky-footer {
