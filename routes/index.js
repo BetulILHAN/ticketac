@@ -62,7 +62,7 @@ router.post('/sign-in', async function(req, res, next) {
   useralreadyexist= await userModel.findOne({ Email: req.body.email, Password:req.body.password });
  
  if(useralreadyexist != null){
-  req.session.user = {Email :useralreadyexist.email, id: useralreadyexist._id};
+  req.session.user = {Email :useralreadyexist.email, userId: useralreadyexist._id};
   res.redirect('/homepage')}
 else {
 res.redirect('/')}
@@ -86,32 +86,12 @@ router.post('/sign-up',async function(req, res, next) {
         Password:req.body.password,
       });
       var newUserSaved = await newUser.save();
-      req.session.user = {email: newUserSaved.email, id: newUserSaved._id};
+      req.session.user = {email: newUserSaved.email, userId: newUserSaved._id};
       res.redirect('/homepage')}
 });
 
-/* Bouton ok Page travels */
-// router.get('/ok', async function(req, res, next) {
-//   var date = new Date(req.body.inputdate);
-// var departure = req.body.inputdeparture;
-// var arrival = req.body.inputdestination
 
-//   var searchJourney = await journeyModel.find({
-//     departure, arrival, date
-//   })
-// console.log(searchJourney);
-//   res.redirect('/orders', {searchJourney});
-// });
 
-/* Bouton home Page unvailable */
-router.post('/home', function(req, res, next) {
-  res.redirect('/homepage');
-});
-
-/* Bouton home last travel / */
-router.post('/home2', function(req, res, next) {
-  res.redirect('/homepage');
-});
 
 /* Page unvailable */
 router.get('/unvailable', function(req, res, next) {
@@ -121,64 +101,51 @@ router.get('/unvailable', function(req, res, next) {
 /* Page orders */
 router.get('/orders', async function(req, res, next) {
   
- console.log("pageorders", req.query);
-  var date = new Date(req.query.inputdate);
-  var departure = req.query.inputdeparture;
-  var arrival = req.query.inputdestination;
+//  console.log("pageorders", req.query);
+//   var date = new Date(req.query.inputdate);
+//   var departure = req.query.inputdeparture;
+//   var arrival = req.query.inputdestination;
 
-  var searchJourney = await journeyModel.find({
-  date,departure, arrival});
+  var searchJourney = await journeyModel.findById(req.query.id);
   console.log("recherche trajet",searchJourney);
-  var date = new Date(req.query.inputdate);
+  // var date = new Date(req.query.inputdate);
    if (req.session.panier == undefined){
     req.session.panier =[];
    }
 
-   req.session.panier.push({
-    departure: req.query.inputdeparture,
-    arrival: req.query.inputdestination,
-    date,
-    departureTime:req.query.inputdepartureTime,
-    price: req.query.inputprice
-    
-})
+   req.session.panier.push(
+searchJourney
+    // departure: req.query.inputdeparture,
+    // arrival: req.query.inputdestination,
+    // date,
+    // departureTime:req.query.inputdepartureTime,
+    // price: req.query.inputprice,
+    // id: req.query.id,
+)
   res.render('orders', { title: 'My Tickets', panier :req.session.panier });
 });
 
-/* Page lasttravel */
-router.get('/last-travel', function(req, res, next) {
-  res.render('lasttravel', { title: 'My Last Trips' });
+/* Bouton confirm Page unvailable */
+router.post('/confirm', function(req, res, next) {
+  res.redirect('/homepage');
 });
 
+/* Page lasttravel */
+router.get('/last-travel', async function(req, res, next) {
 
-// Remplissage de la base de donnée, une fois suffit
-// router.get('/save', async function(req, res, next) {
+//   var newUserJourney = new userModel.findOne( { _id : req.session.userId} );
+// console.log(newUserJourney);
 
-//   // How many journeys we want
-//   var count = 300
+  var currentUser = await userModel.findById(req.session.user.userId);
+  console.log('coucou', req.session.user.userId);
+  req.session.panier.forEach(el =>currentUser.userJourney.push(el._id) )
 
-//   // Save  ---------------------------------------------------
-//     for(var i = 0; i< count; i++){
+  userSaved = await currentUser.save();
+  var user = await userModel.findOne( { _id : req.session.user.userId} ).populate("userJourney").exec();
+  // req.session.panier = []; 
+  console.log('hola', user);
 
-//     departureCity = city[Math.floor(Math.random() * Math.floor(city.length))]
-//     arrivalCity = city[Math.floor(Math.random() * Math.floor(city.length))]
-
-//     if(departureCity != arrivalCity){
-
-//       var newUser = new journeyModel ({
-//         departure: departureCity , 
-//         arrival: arrivalCity, 
-//         date: date[Math.floor(Math.random() * Math.floor(date.length))],
-//         departureTime:Math.floor(Math.random() * Math.floor(23)) + ":00",
-//         price: Math.floor(Math.random() * Math.floor(125)) + 25,
-//       });
-       
-//        await newUser.save();
-
-//     }
-
-//   }
-//   res.render('login', { title: 'Express' });
-// });
+  res.render('lasttravel', { title: 'My Last Trips', panier: req.session.panier });
+});
 
 module.exports = router;
