@@ -33,12 +33,11 @@ var date = new Date(req.body.inputdate);
 var departure = req.body.inputdeparture;
 var arrival = req.body.inputdestination;
 
-
   var searchJourney = await journeyModel.find({
     departure, arrival, date
   })
 console.log(searchJourney);
-res.render('travels', {searchJourney})
+res.render('travels', {title: 'Homepage', searchJourney})
 });
 
 /* Page travels */
