@@ -2,65 +2,86 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= title %>
-    </title>
-    <!-- Bootstrap core CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <!--CSS-->
-    <link href="stylesheets/style.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <!-- Bootstrap core CSS-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <!--CSS-->
+  <link href="stylesheets/style.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <div class="container-fluid justify-content-center">
+  <div id="body" class="container-fluid justify-content-center">
 
-        <%- include('header') %>
-
-        <div id="orders">
-
-            <div class="col-10">
-        <h4 class="offset-2">My last trips :</h4>
-            <table class="table table-light table-hover table-borderless">
-                <thead>
-                  <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">Journey</th>
-                    <th scope="col">Departure time</th>
-                    <th scope="col">Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% for (var i=0; i<panier.length;i++){%>
-                    <tr>
-                      <td><%=dateFormat(panier[i].date)%></td>
-                      <td><%=panier[i].departure%> / <%=panier[i].arrival%></td>
-                      <td><%=panier[i].departureTime%></td>
-                      <td><%=Number(panier[i].price) %>€</td>
-                    </tr>
-                    <%}%>
-                 
-                </tbody>
-              </table>
-              <div class="float-right">
-                
-             <a href="/homepage"><button type="button" class="btn btn-danger">Home</button></a>
-            
-            </div>
-            </div>
-           
-        </div>
-               
-        <%- include('footer') %>
+    <!-- div header -->
+    <div>
+      <%- include('header') %>
     </div>
-    <!-- Bootstrap-->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <!-- jquery-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <!-- div principale -->
+    <div class="row">
+
+      <!--<div id="orders">-->
+
+      <div class="col-10">
+        <h4 class="offset-2">My last trips :</h4>
+
+        <table class="table table-light table-hover table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Journey</th>
+              <th scope="col">Departure time</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% for (var i=0; i<panier.length;i++){%>
+              <tr>
+                <td>
+                  <%=dateFormat(panier[i].date)%>
+                </td>
+                <td>
+                  <%=panier[i].departure%> / <%=panier[i].arrival%>
+                </td>
+                <td>
+                  <%=panier[i].departureTime%>
+                </td>
+                <td>
+                  <%=Number(panier[i].price) %>€
+                </td>
+              </tr>
+              <%}%>
+          </tbody>
+        </table>
+
+        <div class="float-right">
+          <a href="/homepage"><button type="button" class="btn btn-danger">Home</button></a>
+        </div>
+
+      </div>
+
+      <!--/div id orders-->
+
+      <!-- /div principale row -->
+    </div>
+
+    <!-- div footer -->
+    <div>
+      <%- include('footer') %>
+    </div>
+
+    <!-- /div container-fluid -->
+  </div>
+
+  <!-- Bootstrap-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- jquery-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 </body>
 

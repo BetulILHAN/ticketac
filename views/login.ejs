@@ -1,95 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-   <!-- Bootstrap core CSS-->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-   <!--CSS--> 
-   <link href="stylesheets/style.css" rel="stylesheet">
+  <title>
+    <%= title %>
+  </title>
+  <!-- Bootstrap core CSS-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <!--CSS-->
+  <link href="stylesheets/style.css" rel="stylesheet">
 </head>
+
 <body>
 
-  <div class="container-fluid justify-content-center">
-    
-<%- include('header') %>
+  <div id="body" class="container-fluid justify-content-center">
 
-    <div class="row">
+    <!-- div header -->
+    <div>
+      <%- include('header') %>
+    </div>
 
+    <!-- div principale -->
+    <div class="row" id="row-login">
 
       <!-- SIGN IN AREA -->
-      <div class="col-12 col-sm-3 text-center ">
+      <div id="sign-in" class="col-12 col-sm-6 text-center">
 
-        <div class="formArea">
-
-          <h4 class="titleForm">Sign-in:</h4>
+        <div class="formArea text-light">
+          <h4>Sign-in :</h4>
 
           <form action="/sign-in" method="POST">
             <div class="form-group">
               <label for="exampleInputEmail1"></label>
               <input name="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email" name="name">
-              
             </div>
+
             <div class="form-group">
               <label for="exampleInputPassword1"></label>
               <input name="password" type="password" class="form-control" placeholder="Password" name="paswword">
             </div>
 
-            <button type="submit" class="btn btn-danger">Confirm</button>
+            <button type="submit" class="btn btn-danger mb-3">Confirm</button>
           </form>
-
         </div>
 
       </div>
 
       <!-- SIGN UP AREA -->
-      <div class="col-12 col-sm-3 text-center justify-content-center">
+      <div id="sign-up" class="col-12 col-sm-6 text-center">
 
-        <div class="formArea">
-          <h4 class="titleForm">Sign-up :</h4>
+        <div class="formArea text-light">
+          <h4>Sign-up :</h4>
 
           <form action="/sign-up" method="POST">
             <div class="form-group">
               <label for="exampleInputName"></label>
               <input type="text" class="form-control" placeholder="Name" name="name">
             </div>
+
             <div class="form-group">
               <label for="exampleInputFirstname"></label>
               <input type="text" class="form-control" placeholder="Firstname" name="firstname">
             </div>
+
             <div class="form-group">
               <label for="exampleInputEmail1"></label>
               <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Email" name="email">
               <%=error%>
             </div>
+
             <div class="form-group">
               <label for="exampleInputPassword1"></label>
-              <input type="password" class="form-control"  placeholder="Password" name="password">
+              <input type="password" class="form-control" placeholder="Password" name="password">
             </div>
 
-           <button type="submit" class="btn btn-danger">Confirm</button>
+            <button type="submit" class="btn btn-danger">Confirm</button>
           </form>
         </div>
 
       </div>
 
-      
-
+    <!-- /div principale row -->
     </div>
-   
-  </div>
+
+  <!-- div footer -->
   <div>
-    
-      <%- include('footer') %>
-   
+    <%- include('footer') %>
   </div>
-  
-     <!-- Bootstrap-->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <!-- jquery-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+  <!-- /div container-fluid -->
+  </div>
+
+  <!-- Bootstrap-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <!-- jquery-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 
 </body>
+
 </html>
